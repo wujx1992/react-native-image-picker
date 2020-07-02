@@ -127,7 +127,9 @@ RCT_EXPORT_METHOD(showImagePicker:(NSDictionary *)options callback:(RCTResponseS
 - (void)launchImagePicker:(RNImagePickerTarget)target options:(NSDictionary *)options
 {
     self.options = options;
-    [self launchImagePicker:target];
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+       [self launchImagePicker:target];
+    });
 }
 
 - (void)launchImagePicker:(RNImagePickerTarget)target
